@@ -2,6 +2,8 @@ package com.devsuperior.domainModelORM.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_product")
 public class Product {
@@ -18,16 +20,20 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItem;
+
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Double price, String imgUrl, Category category) {
+    public Product(Long id, String name, String description, Double price, String imgUrl, Category category, List<OrderItem> orderItem) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
         this.category = category;
+        this.orderItem = orderItem;
     }
 
     public Long getId() {
@@ -76,5 +82,13 @@ public class Product {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<OrderItem> getOrderItem() {
+        return orderItem;
+    }
+
+    public void setOrderItem(List<OrderItem> orderItem) {
+        this.orderItem = orderItem;
     }
 }
