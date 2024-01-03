@@ -2,6 +2,8 @@ package com.devsuperior.domainModelORM.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "tb_orderItem")
 public class OrderItem {
@@ -69,5 +71,18 @@ public class OrderItem {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderItem orderItem = (OrderItem) o;
+        return Objects.equals(id, orderItem.id) && Objects.equals(product, orderItem.product) && Objects.equals(order, orderItem.order);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, product, order);
     }
 }
