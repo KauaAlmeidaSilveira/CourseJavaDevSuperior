@@ -2,12 +2,13 @@ package com.devsuperior.domainModelORM.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_product")
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
