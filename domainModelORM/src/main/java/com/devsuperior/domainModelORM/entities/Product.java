@@ -1,5 +1,6 @@
 package com.devsuperior.domainModelORM.entities;
 
+import com.devsuperior.domainModelORM.DTO.ProductDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -35,6 +36,14 @@ public class Product implements Serializable {
         this.price = price;
         this.imgUrl = imgUrl;
         this.category = category;
+    }
+
+    public Product(ProductDTO productDTO) {
+        id = productDTO.getId();
+        name = productDTO.getName();
+        description = productDTO.getDescription();
+        price = productDTO.getPrice();
+        imgUrl = productDTO.getImgUrl();
     }
 
     public Long getId() {

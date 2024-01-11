@@ -21,7 +21,7 @@ public class ProductDTO {
         this.imgUrl = imgUrl;
     }
 
-    public ProductDTO(Product product){
+    public ProductDTO(Product product) {
         id = product.getId();
         name = product.getName();
         description = product.getDescription();
