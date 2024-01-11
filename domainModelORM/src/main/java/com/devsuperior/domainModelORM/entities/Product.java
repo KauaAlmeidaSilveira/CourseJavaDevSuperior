@@ -38,14 +38,6 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    public Product(ProductDTO productDTO) {
-        id = productDTO.getId();
-        name = productDTO.getName();
-        description = productDTO.getDescription();
-        price = productDTO.getPrice();
-        imgUrl = productDTO.getImgUrl();
-    }
-
     public Long getId() {
         return id;
     }

@@ -17,7 +17,7 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public ProductDTO findById(Long id) {
-        Product product = productRepository.findById(id).orElseGet(Product::new);
+        Product product = productRepository.findById(id).get();
         return new ProductDTO(product);
     }
 
@@ -29,10 +29,30 @@ public class ProductService {
 
     @Transactional
     public ProductDTO insert(ProductDTO productDTO) {
-        Product product = new Product(productDTO);
-        productRepository.save(product);
+        Product product = new Product();
+        copyDtoToEntity(productDTO, product);
+        product = productRepository.save(product);
 
         return new ProductDTO(product);
     }
 
+    @Transactional
+    public ProductDTO update(Long id, ProductDTO productDTO) {
+        Product product = productRepository.getReferenceById(id);
+        copyDtoToEntity(productDTO, product);
+        productRepository.save(product);
+        return new ProductDTO(product);
+    }
+
+    @Transactional
+    public void delete(Long id){
+        productRepository.deleteById(id);
+    }
+
+    private void copyDtoToEntity(ProductDTO productDTO, Product product){
+        product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setImgUrl(productDTO.getImgUrl());
+    }
 }
