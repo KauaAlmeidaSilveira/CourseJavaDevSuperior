@@ -3,6 +3,7 @@ package com.devsuperior.domainModelORM.controllers;
 import com.devsuperior.domainModelORM.DTO.ProductDTO;
 import com.devsuperior.domainModelORM.entities.Product;
 import com.devsuperior.domainModelORM.services.ProductService;
+import com.devsuperior.domainModelORM.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
