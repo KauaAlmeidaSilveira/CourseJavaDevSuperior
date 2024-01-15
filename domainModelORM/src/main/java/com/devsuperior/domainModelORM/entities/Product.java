@@ -1,6 +1,5 @@
 package com.devsuperior.domainModelORM.entities;
 
-import com.devsuperior.domainModelORM.DTO.ProductDTO;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
