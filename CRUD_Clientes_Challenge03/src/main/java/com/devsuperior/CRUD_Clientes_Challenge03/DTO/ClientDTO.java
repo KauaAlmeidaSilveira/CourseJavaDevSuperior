@@ -1,15 +1,19 @@
 package com.devsuperior.CRUD_Clientes_Challenge03.DTO;
 
 import com.devsuperior.CRUD_Clientes_Challenge03.entities.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
 
 public class ClientDTO{
 
     private Long id;
+    @NotBlank(message = "The name cannot be blank !!")
     private String name;
     private String cpf;
     private Double income;
+    @PastOrPresent(message = "The date of birth cannot be in the future !!")
     private LocalDate birthDate;
     private Integer children;
 
