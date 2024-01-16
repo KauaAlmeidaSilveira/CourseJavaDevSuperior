@@ -34,4 +34,15 @@ public class ClientController {
                 .buildAndExpand(clientDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(clientDTO);
     }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO){
+        return ResponseEntity.ok(clientService.update(id, clientDTO));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        clientService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

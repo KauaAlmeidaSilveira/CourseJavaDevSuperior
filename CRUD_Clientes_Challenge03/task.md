@@ -6,6 +6,13 @@
 
 -[x] Inserir novo recurso
 
--[ ] Atualizar recurso
+-[x] Atualizar recurso
 
--[ ] Deletar recurso
+-[x] Deletar recurso
+
+## Exceptions
+
+-[x] Id não encontrado GET/PUT/DELETE - 404
+-[ ] 
+
+
