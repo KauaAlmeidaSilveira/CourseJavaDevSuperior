@@ -1,6 +1,5 @@
 package com.devsuperior.aula.DTO;
 
-import com.devsuperior.aula.entities.Department;
 import com.devsuperior.aula.entities.Person;
 
 public class PersonDTO {
@@ -8,20 +7,20 @@ public class PersonDTO {
     private Long id;
     private String name;
     private Double salary;
-    private DepartmentDTO departmentDTO;
+    private Long departmentId;
 
-    public PersonDTO(Long id, String name, Double salary, DepartmentDTO departmentDTO) {
+    public PersonDTO(Long id, String name, Double salary, Long departmentId) {
         this.id = id;
         this.name = name;
         this.salary = salary;
-        this.departmentDTO = departmentDTO;
+        this.departmentId = departmentId;
     }
 
-    public PersonDTO(Person person) {
-        id = person.getId();
-        name = person.getName();
-        salary = person.getSalary();
-        departmentDTO = new DepartmentDTO(person.getDepartment());
+    public PersonDTO(Person entity) {
+        id = entity.getId();
+        name = entity.getName();
+        salary = entity.getSalary();
+        departmentId = entity.getDepartment().getId();
     }
 
     public Long getId() {
@@ -36,8 +35,7 @@ public class PersonDTO {
         return salary;
     }
 
-    public DepartmentDTO getDepartment() {
-        return departmentDTO;
+    public Long getDepartmentId() {
+        return departmentId;
     }
-
 }
