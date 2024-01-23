@@ -41,4 +41,12 @@ public class EmployeeController {
 		List<EmployeeMinDTO> result = service.findByName(name);
 		return ResponseEntity.ok(result);
 	}
+
+	@GetMapping(value = "/department")
+	public ResponseEntity<List<EmployeeMinDTO>> findEmployeeByNameDepartment() {
+		List<EmployeeMinDTO> result = service.findEmployeeByNameDepartment();
+		return ResponseEntity.ok(result);
+	}
+
+
 }

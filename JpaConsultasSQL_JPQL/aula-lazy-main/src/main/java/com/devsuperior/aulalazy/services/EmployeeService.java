@@ -42,4 +42,10 @@ public class EmployeeService {
 		List<Employee> result = repository.findByNameContainingIgnoreCase(name);
 		return result.stream().map(EmployeeMinDTO::new).toList();
 	}
+
+	@Transactional(readOnly = true)
+	public List<EmployeeMinDTO> findEmployeeByNameDepartment() {
+		List<Employee> result = repository.findEmployeeByNameDepartment();
+		return result.stream().map(EmployeeMinDTO::new).toList();
+	}
 }

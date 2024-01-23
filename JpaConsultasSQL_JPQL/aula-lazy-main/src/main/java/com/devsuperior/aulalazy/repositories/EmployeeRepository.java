@@ -13,4 +13,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	List<Employee> findEmployeesWithDepartments();
 
 	List<Employee> findByNameContainingIgnoreCase(String name);
+
+	@Query("SELECT obj FROM Employee obj WHERE obj.department.name = 'Training'")
+	List<Employee> findEmployeeByNameDepartment();
 }
