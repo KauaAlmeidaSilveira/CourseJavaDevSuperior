@@ -34,6 +34,12 @@ public class EmployeeService {
 	@Transactional(readOnly = true)
 	public List<EmployeeDepartmentDTO> findEmployeesWithDepartments() {
 		List<Employee> result = repository.findEmployeesWithDepartments();
-		return result.stream().map(x -> new EmployeeDepartmentDTO(x)).collect(Collectors.toList());
-	}	
+		return result.stream().map(EmployeeDepartmentDTO::new).collect(Collectors.toList());
+	}
+
+	@Transactional(readOnly = true)
+	public List<EmployeeMinDTO> findByName(String name) {
+		List<Employee> result = repository.findByNameContainingIgnoreCase(name);
+		return result.stream().map(EmployeeMinDTO::new).toList();
+	}
 }
