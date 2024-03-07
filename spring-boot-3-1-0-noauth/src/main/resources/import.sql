@@ -1,5 +1,5 @@
-INSERT INTO tb_user (name, email, password) VALUES ('Alex', 'alex@gmail.com', '123456');
-INSERT INTO tb_user (name, email, password) VALUES ('Maria', 'maria@gmail.com', '123456');
+INSERT INTO tb_user (name, email, password) VALUES ('Alex', 'alex@gmail.com', '$2a$10$uc17x2/vLikJKIT.P0j7u.Wj3dhqGkx/JOmPmF8kJdj9Ypzhy65MS');
+INSERT INTO tb_user (name, email, password) VALUES ('Maria', 'maria@gmail.com', '$2a$10$uc17x2/vLikJKIT.P0j7u.Wj3dhqGkx/JOmPmF8kJdj9Ypzhy65MS');
 
 INSERT INTO tb_role (authority) VALUES ('ROLE_OPERATOR');
 INSERT INTO tb_role (authority) VALUES ('ROLE_ADMIN');
