@@ -1,7 +1,9 @@
 package com.devsuperior.DSCommerce.services;
 
+import com.devsuperior.DSCommerce.DTO.CategoryDTO;
 import com.devsuperior.DSCommerce.DTO.ProductDTO;
 import com.devsuperior.DSCommerce.DTO.ProductMinDTO;
+import com.devsuperior.DSCommerce.entities.Category;
 import com.devsuperior.DSCommerce.entities.Product;
 import com.devsuperior.DSCommerce.repositories.ProductRepository;
 import com.devsuperior.DSCommerce.services.exceptions.DatabaseException;
@@ -36,10 +38,14 @@ public class ProductService {
 
     @Transactional
     public ProductDTO insert(ProductDTO productDTO) {
-        Product product = new Product();
-        copyDtoToEntity(productDTO, product);
-        product = productRepository.save(product);
-        return new ProductDTO(product);
+        try {
+            Product product = new Product();
+            copyDtoToEntity(productDTO, product);
+            product = productRepository.save(product);
+            return new ProductDTO(product);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Recurso não encontrado !!");
+        }
     }
 
     @Transactional
@@ -56,12 +62,12 @@ public class ProductService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public void delete(Long id) {
-        if (!productRepository.existsById(id)){
+        if (!productRepository.existsById(id)) {
             throw new ResourceNotFoundException("Recurso não encontrado !!");
         }
-        try{
+        try {
             productRepository.deleteById(id);
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new DatabaseException("Falha de integridade referencial!!");
         }
 
@@ -72,5 +78,11 @@ public class ProductService {
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
         product.setImgUrl(productDTO.getImgUrl());
+        product.getCategories().clear();
+        for (CategoryDTO catDTO : productDTO.getCategories()) {
+            Category cat = new Category();
+            cat.setId(catDTO.getId());
+            product.getCategories().add(cat);
+        }
     }
 }

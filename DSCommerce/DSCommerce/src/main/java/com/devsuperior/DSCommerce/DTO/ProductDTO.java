@@ -2,6 +2,7 @@ package com.devsuperior.DSCommerce.DTO;
 
 import com.devsuperior.DSCommerce.entities.Product;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -21,6 +22,7 @@ public class ProductDTO {
     private Double price;
     private String imgUrl;
 
+    @NotEmpty(message = "Campo requerido")
     private List<CategoryDTO> categories = new ArrayList<>();
 
     public ProductDTO(Long id, String name, String description, Double price, String imgUrl) {
@@ -37,7 +39,7 @@ public class ProductDTO {
         description = product.getDescription();
         price = product.getPrice();
         imgUrl = product.getImgUrl();
-
+        product.getCategories().forEach(cat -> categories.add(new CategoryDTO(cat)));
     }
 
     public Long getId() {
