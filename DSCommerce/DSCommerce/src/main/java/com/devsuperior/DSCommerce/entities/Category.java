@@ -2,8 +2,10 @@ package com.devsuperior.DSCommerce.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_category")
@@ -14,16 +16,15 @@ public class Category {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
     }
 
-    public Category(Long id, String name, List<Product> products) {
+    public Category(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.products = products;
     }
 
     public Long getId() {
@@ -40,14 +41,6 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
     @Override

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_product")
@@ -14,13 +15,16 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(columnDefinition = "TEXT")
     private String description;
     private Double price;
     private String imgUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(name = "tb_product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItem;
@@ -28,13 +32,12 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Double price, String imgUrl, Category category) {
+    public Product(Long id, String name, String description, Double price, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
-        this.category = category;
     }
 
     public Long getId() {
@@ -75,14 +78,6 @@ public class Product implements Serializable {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public List<OrderItem> getOrderItem() {
