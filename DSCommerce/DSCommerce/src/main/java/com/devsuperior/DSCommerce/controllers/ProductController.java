@@ -1,6 +1,7 @@
 package com.devsuperior.DSCommerce.controllers;
 
 import com.devsuperior.DSCommerce.DTO.ProductDTO;
+import com.devsuperior.DSCommerce.DTO.ProductMinDTO;
 import com.devsuperior.DSCommerce.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(
+    public ResponseEntity<Page<ProductMinDTO>> findAll(
             @RequestParam(name = "name", defaultValue = "") String name,
             Pageable pageable) {
         return ResponseEntity.ok(productService.findAll(name, pageable));
