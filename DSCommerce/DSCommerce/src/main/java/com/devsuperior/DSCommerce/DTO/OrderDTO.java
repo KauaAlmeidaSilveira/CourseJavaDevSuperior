@@ -2,6 +2,7 @@ package com.devsuperior.DSCommerce.DTO;
 
 import com.devsuperior.DSCommerce.entities.Order;
 import com.devsuperior.DSCommerce.entities.enums.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class OrderDTO {
     private ClientDTO client;
     private PaymentDTO payment;
 
+    @NotEmpty(message = "Deve ter pelo menos um item")
     private List<OrderItemDTO> items = new ArrayList<>();
 
     public OrderDTO(Long id, Instant moment, OrderStatus status, ClientDTO client, PaymentDTO payment, Double total) {

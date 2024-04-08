@@ -33,6 +33,13 @@ public class OrderItem {
         this.order = order;
     }
 
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }

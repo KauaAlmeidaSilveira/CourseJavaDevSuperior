@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public class Order implements Serializable {
     private Payment payment;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItem;
+    private List<OrderItem> orderItem = new ArrayList<>();
 
     public Order() {
     }
