@@ -19,25 +19,25 @@ import java.time.Instant;
 public class ControllerExceptionsHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<CustomError> ResourceNotFound(ResourceNotFoundException e, HttpServletRequest request){
+    public ResponseEntity<CustomError> ResourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         CustomError error = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(error);
     }
 
     @ExceptionHandler(DatabaseException.class)
-    public ResponseEntity<CustomError> Database(DatabaseException e, HttpServletRequest request){
+    public ResponseEntity<CustomError> Database(DatabaseException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
         CustomError error = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(error);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<CustomError> methodArgumentNotValidation(MethodArgumentNotValidException e, HttpServletRequest request){
+    public ResponseEntity<CustomError> methodArgumentNotValidation(MethodArgumentNotValidException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
         ValidationError error = new ValidationError(Instant.now(), status.value(), "Dados inválidos !!", request.getRequestURI());
 
-        for(FieldError f : e.getBindingResult().getFieldErrors()){
+        for (FieldError f : e.getBindingResult().getFieldErrors()) {
             error.addError(f.getField(), f.getDefaultMessage());
         }
 
@@ -45,7 +45,7 @@ public class ControllerExceptionsHandler {
     }
 
     @ExceptionHandler(ForbiddenException.class)
-    public ResponseEntity<CustomError> forbidden(ForbiddenException e, HttpServletRequest request){
+    public ResponseEntity<CustomError> forbidden(ForbiddenException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.FORBIDDEN;
         CustomError error = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(error);

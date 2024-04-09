@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -49,13 +48,13 @@ public class UserService implements UserDetailsService {
             String username = jwtPrincipal.getClaim("username");
 
             return repository.findByEmail(username).get();
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new UsernameNotFoundException("Email not found");
         }
     }
 
     @Transactional(readOnly = true)
-    public UserDTO getMe(){
+    public UserDTO getMe() {
         User user = autheticated();
         return new UserDTO(user);
     }

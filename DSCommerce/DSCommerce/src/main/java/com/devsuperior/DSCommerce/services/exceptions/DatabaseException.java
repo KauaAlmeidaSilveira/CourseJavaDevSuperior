@@ -1,7 +1,7 @@
 package com.devsuperior.DSCommerce.services.exceptions;
 
-public class DatabaseException extends RuntimeException{
+public class DatabaseException extends RuntimeException {
     public DatabaseException(String msg) {
-         super(msg);
+        super(msg);
     }
 }

@@ -1,8 +1,5 @@
 package com.devsuperior.DSCommerce;
 
-import com.devsuperior.DSCommerce.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
