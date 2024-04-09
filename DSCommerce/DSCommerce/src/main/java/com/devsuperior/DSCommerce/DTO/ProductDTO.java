@@ -1,10 +1,7 @@
 package com.devsuperior.DSCommerce.DTO;
 
 import com.devsuperior.DSCommerce.entities.Product;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +15,12 @@ public class ProductDTO {
     @Size(message = "Deve ter no mínimo 10 caracteres", min = 10)
     @NotBlank
     private String description;
+    @NotNull(message = "Campo requerido")
     @Positive(message = "Preço deve ser maior que 0")
     private Double price;
     private String imgUrl;
 
-    @NotEmpty(message = "Campo requerido")
+    @NotEmpty(message = "Deve ter pelo menos uma categoria")
     private List<CategoryDTO> categories = new ArrayList<>();
 
     public ProductDTO(Long id, String name, String description, Double price, String imgUrl) {
